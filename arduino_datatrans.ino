@@ -25,7 +25,7 @@ byte data[40] = { 0xff, 0x10, 0x24, 0x45, 0x45, 0x37, 0x36, 0x32, 0x44, 0x33,
                     
                     
  // BLE Battery Service
-BLEService folkliftService("AA01");
+BLEService myService("AA01");
 
 // BLE Battery Level Characteristic
 BLECharacteristic rxChar("BA02", BLEWrite, 512); // remote clients will be able to get notifications if this characteristic changes
@@ -53,10 +53,10 @@ void setup() {
      The name can be changed but maybe be truncated based on space left in advertisement packet
   */
   BLE.setLocalName("Datatrans emulator");
-  BLE.setAdvertisedService(folkliftService); // add the service UUID
-  folkliftService.addCharacteristic(rxChar); // add the battery level characteristic
-  folkliftService.addCharacteristic(txChar);
-  BLE.addService(folkliftService); // Add the battery service
+  BLE.setAdvertisedService(myService); // add the service UUID
+  myService.addCharacteristic(rxChar); // add the battery level characteristic
+  myService.addCharacteristic(txChar);
+  BLE.addService(myService); // Add the battery service
 
 
   /* Start advertising BLE.  It will start continuously transmitting BLE
